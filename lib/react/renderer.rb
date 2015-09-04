@@ -48,6 +48,7 @@ module React
         (function () {
           var result = React.renderToString(React.createElement(#{component}, #{react_props}));
           #{@@replay_console ? React::Console.replay_as_script_js : ''}
+          #{::Rails.application.config.react.after_render_js.call(component, react_props)}
           return result;
         })()
       JS

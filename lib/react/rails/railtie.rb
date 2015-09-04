@@ -15,6 +15,8 @@ module React
       config.react.react_js = lambda {File.read(::Rails.application.assets.resolve('react.js'))}
       config.react.component_filenames = ['components.js']
 
+      config.react.after_render_js = lambda { |_component, _react_props| '' }
+
       # Watch .jsx files for changes in dev, so we can reload the JS VMs with the new JS code.
       initializer "react_rails.add_watchable_files", group: :all do |app|
         app.config.watchable_files.concat Dir["#{app.root}/app/assets/javascripts/**/*.jsx*"]
